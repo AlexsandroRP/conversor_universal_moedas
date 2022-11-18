@@ -1,6 +1,8 @@
+### IMPORTAÇÃO DAS BIBLIOTECAS NECESSÁRIAS ###
 import requests
 import json
 
+### DEFINIÇÃO DAS FUNÇÕES ###
 def bem_vindo():
     print("-"*43)
     print("BEM VINDO AO CONVERSOR DE MOEDAS UNIVERSAL!")
@@ -48,10 +50,20 @@ def calcular_conversao_moedas(valor_escolhido):
     conversao = float(valor_escolhido * valor_a_converter)
     
     print(f'RESULTADO: {primeira_moeda_usuario} {valor_a_converter:,.2f} = {segunda_moeda_usuario} {conversao:,.2f}')
-    
+
+def continuar_parar():
+    escolha = input("Deseja continuar o programa? s/n: ").lower()
+    if 's' in escolha:
+        return True    
+    elif 'n' in escolha:
+        print("-"*20)
+        print("PROGRAMA FINALIZADO")
+        print("-"*20)
+        return False
+    return escolha            
 
 
-
+### APP PRINCIPAL ###
 bem_vindo()
 programa_rodando = True
 
@@ -61,10 +73,7 @@ while programa_rodando:
     
     valores_escolha = requisicao_moedas(primeira_moeda_usuario, segunda_moeda_usuario)
     calcular_conversao_moedas(valores_escolha)
-    programa_rodando = True
-
-
-
-# requisicao = requests.get('https://economia.awesomeapi.com.br/json/last/BTC')
-# requisicao_json = requisicao.json()
-# print(requisicao_json)
+    programa_rodando = continuar_parar()
+    
+    
+    
